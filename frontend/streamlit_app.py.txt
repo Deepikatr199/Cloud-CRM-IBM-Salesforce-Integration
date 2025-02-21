@@ -1,0 +1,18 @@
+import streamlit as st
+import requests
+
+# Streamlit App Title
+st.title("CRM Backup Monitoring Dashboard")
+
+# Button to Check Backup Status
+if st.button("Check Backup Status"):
+    try:
+        # Call FastAPI Endpoint
+        response = requests.get("http://localhost:8000/backup-status")
+        if response.status_code == 200:
+            data = response.json()
+            st.success(f"Backup Status: {data['status']} at {data['timestamp']}")
+        else:
+            st.error("Failed to fetch backup status.")
+    except Exception as e:
+        st.error(f"Error: {e}")

@@ -1,0 +1,25 @@
+from cloudant.client import Cloudant
+
+# IBM Cloudant credentials
+USERNAME = "ibm-cloudant-username"
+API_KEY = "ibm-cloudant-api-key"
+
+# Connect to Cloudant
+client = Cloudant.iam(USERNAME, API_KEY, connect=True)
+
+# Create/select the database
+db_name = "crm_data"
+database = client.create_database(db_name, throw_on_exists=False)
+
+# Sample document
+doc = {
+    "_id": "account_001",
+    "name": "Dees",
+    "email": "Dees@example.com",
+    "backup_status": "Successful"
+}
+
+# Insert the document
+new_doc = database.create_document(doc)
+if new_doc.exists():
+    print("Data inserted into Cloudant successfully!")

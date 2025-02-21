@@ -1,0 +1,32 @@
+import React, { useState, useEffect } from react;
+import axios from axios;
+import .App.css;
+
+function App() {
+    const [status, setStatus] = useState(Checking...);
+
+     Fetch backup status from FastAPI
+    const getBackupStatus = async () = {
+        try {
+            const response = await axios.get(httplocalhost8000backup-status);
+            setStatus(response.data.status);
+        } catch (error) {
+            setStatus(Failed to fetch backup status.);
+        }
+    };
+
+     Fetch status on load
+    useEffect(() = {
+        getBackupStatus();
+    }, []);
+
+    return (
+        div className=App
+            h1CRM Backup Monitoring Dashboardh1
+            pBackup Status strong{status}strongp
+            button onClick={getBackupStatus}Refresh Statusbutton
+        div
+    );
+}
+
+export default App;

@@ -1,0 +1,11 @@
+from fastapi import FastAPI
+
+# Create FastAPI app
+app = FastAPI()
+
+# Endpoint to check backup status
+@app.get("/backup-status")
+def get_status():
+    return {"status": "Backup Successful!", "timestamp": "2024-02-21T10:00:00Z"}
+
+# Run using: uvicorn app:app --reload
